@@ -43,10 +43,7 @@ class _NewSubState extends State<NewSub> {
               child: SizedBox(
                 height: 40,
                 child: RaisedButton(
-                  onPressed: () {
-                    crudObj.addData(textValue.text);
-                    Navigator.pop(context);
-                  },
+                  onPressed: saveTask,
                   child: Text('Save'),
                 ),
               ),
@@ -55,5 +52,14 @@ class _NewSubState extends State<NewSub> {
         ) 
       )
     );
+  }
+
+  void saveTask() {
+    final formState = _formkey.currentState;
+    if (formState.validate()) {
+      formState.save();
+      crudObj.addData(textValue.text);
+      Navigator.pop(context);
+    }
   }
 }
